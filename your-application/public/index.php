@@ -13,7 +13,7 @@ require '../src/auth.php';
     <div id="page-header">
       <div id="logo-header">
         <img src="https://fusionauth.io/assets/img/samplethemes/changebank/changebank.svg" />
-        <a class="button-lg" href="">Login</a>
+        <a class="button-lg" href="<?= "google.com"         ?> ">Login</a>
         <!-- {% url 'oidc_authentication_init' %} -->
       </div>
 
