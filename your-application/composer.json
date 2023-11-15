@@ -1,0 +1,5 @@
+{
+    "require": {
+        "jerryhopper/oauth2-fusionauth": "^0.0.2"
+    }
+}
