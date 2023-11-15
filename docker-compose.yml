@@ -87,6 +87,16 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
+
+## PHP ####################
+  php:
+    image: php:8.2-apache
+    container_name: phpbox
+    ports:
+      - 9012:80
+    volumes:
+      - ./your-application:/var/www/html
+
 ## LARAVEL ####################
   # mariadb:
   #   image: docker.io/bitnami/mariadb:11.0 # port 3306

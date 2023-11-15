@@ -26,8 +26,14 @@ docker build -t phpimage .
 docker run -it --volume ./your-application:/var/www/html --name phpbox -p 9012:80 phpimage
 docker start -ai phpbox
 
+docker exec -it phpbox /bin/bash
+
 composer require jerryhopper/oauth2-fusionauth
 
+# cp nginx.conf /etc/nginx/http.d/default.conf
+
+service apache2 status;
+cat /etc/apache2/apache2.conf;
 ```
 
 
