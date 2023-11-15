@@ -1,15 +1,20 @@
+<?php
+require '../src/auth.php';
+?>
+
 <html>
 <head>
   <meta charset="utf-8" />
   <title>FusionAuth OpenID and PKCE example</title>
-  <link rel="stylesheet" href="/static/css/changebank.css">
+  <link rel="stylesheet" href="./changebank.css">
 </head>
 <body>
   <div id="page-container">
     <div id="page-header">
       <div id="logo-header">
         <img src="https://fusionauth.io/assets/img/samplethemes/changebank/changebank.svg" />
-        <a class="button-lg" href="{% url 'oidc_authentication_init' %}">Login</a>
+        <a class="button-lg" href="">Login</a>
+        <!-- {% url 'oidc_authentication_init' %} -->
       </div>
 
       <div id="menu-bar" class="menu-bar">
@@ -25,7 +30,7 @@
         <div class="content-container">
           <div style="margin-bottom: 100px;">
             <h1>Welcome to Changebank</h1>
-            <p>To get started, <a href="{% url 'oidc_authentication_init' %}">log in or create a new account</a>.</p>
+            <p>To get started, <a href="">log in or create a new account</a>.</p>
           </div>
         </div>
         <div style="flex: 0;">
