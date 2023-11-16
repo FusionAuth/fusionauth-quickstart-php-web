@@ -16,10 +16,12 @@ $provider = new \JerryHopper\OAuth2\Client\Provider\FusionAuth([
     'clientId'          => $fusionAuthClientId,
     'clientSecret'      => $fusionAuthClientSecret,
     'redirectUri'       => $fusionAuthRedirectUrl,
-    'urlAuthorize'            => $fusionAuthBaseUrl . '/oauth2/authorize',
+    'urlAuthorize'            => $fusionAuthBaseUrl . '/oauth2/authorize', # 'http://host.docker.internal:9011/oauth2/authorize'
     'urlAccessToken'          => $fusionAuthBaseUrl . '/oauth2/token',
     'urlResourceOwnerDetails' => $fusionAuthBaseUrl . '/oauth2/userinfo',
 ]);
+
+// "Invalid redirect_uri http://localhost:9012/auth/callback",
 
 // send user to fusionauth login, if not coming from there
 if (!isset($_GET['code'])) {

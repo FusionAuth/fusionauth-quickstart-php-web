@@ -99,6 +99,8 @@ services:
       - 9012:80
     volumes:
       - ./your-application:/var/www/html
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 ## LARAVEL ####################
   # mariadb:

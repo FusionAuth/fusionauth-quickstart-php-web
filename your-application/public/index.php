@@ -1,8 +1,3 @@
-<?php
-require __DIR__ . '/../src/auth.php';
-
-?>
-
 <html>
 <head>
   <meta charset="utf-8" />
@@ -14,8 +9,7 @@ require __DIR__ . '/../src/auth.php';
     <div id="page-header">
       <div id="logo-header">
         <img src="static/changebank.svg" />
-        <a class="button-lg" href="<?= "google.com"         ?> ">Login</a>
-        <!-- {% url 'oidc_authentication_init' %} -->
+        <a class="button-lg" href="login.php">Login</a>
       </div>
 
       <div id="menu-bar" class="menu-bar">
@@ -31,7 +25,7 @@ require __DIR__ . '/../src/auth.php';
         <div class="content-container">
           <div style="margin-bottom: 100px;">
             <h1>Welcome to Changebank</h1>
-            <p>To get started, <a href="">log in or create a new account</a>.</p>
+            <p>To get started, <a href="login.php">log in or create a new account</a>.</p>
           </div>
         </div>
         <div style="flex: 0;">
