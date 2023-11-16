@@ -6,13 +6,13 @@ require '../src/auth.php';
 <head>
   <meta charset="utf-8" />
   <title>FusionAuth OpenID and PKCE example</title>
-  <link rel="stylesheet" href="./changebank.css">
+  <link rel="stylesheet" href="static/changebank.css">
 </head>
 <body>
   <div id="page-container">
     <div id="page-header">
       <div id="logo-header">
-        <img src="https://fusionauth.io/assets/img/samplethemes/changebank/changebank.svg" />
+        <img src="static/changebank.svg" />
         <a class="button-lg" href="<?= "google.com"         ?> ">Login</a>
         <!-- {% url 'oidc_authentication_init' %} -->
       </div>
@@ -34,7 +34,7 @@ require '../src/auth.php';
           </div>
         </div>
         <div style="flex: 0;">
-          <img src="/static/img/money.jpg" style="max-width: 800px;"/>
+          <img src="static/money.jpg" style="max-width: 800px;"/>
         </div>
       </div>
     </div>

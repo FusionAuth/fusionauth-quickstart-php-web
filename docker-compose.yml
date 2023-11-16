@@ -90,7 +90,10 @@ services:
 
 ## PHP ####################
   php:
-    image: php:8.2-apache
+    # image: php:8.2-apache
+    build:
+      context: .
+      dockerfile: phpimage.Dockerfile
     container_name: phpbox
     ports:
       - 9012:80
