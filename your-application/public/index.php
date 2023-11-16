@@ -1,5 +1,6 @@
 <?php
-require '../src/auth.php';
+require __DIR__ . '/../src/auth.php';
+
 ?>
 
 <html>
