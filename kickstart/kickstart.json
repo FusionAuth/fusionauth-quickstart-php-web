@@ -42,7 +42,7 @@
                             "POST",
                             "OPTIONS"
                         ],
-                        "allowedOrigins": [ "http://localhost:3000" ],
+                        "allowedOrigins": [ "http://localhost:9012" ],
                         "debug": false,
                         "enabled": true,
                         "preflightMaxAgeInSeconds": 0
@@ -74,10 +74,10 @@
               "application": {
                 "name": "Example app",
                 "oauthConfiguration" : {
-                    "authorizedRedirectURLs": ["http://localhost:3000/auth/callback"],
-                    "authorizedOriginURLs": ["http://localhost:3000"],
+                    "authorizedRedirectURLs": ["http://localhost:9012/auth/callback"],
+                    "authorizedOriginURLs": ["http://localhost:9012"],
                     "clientSecret": "super-secret-secret-that-should-be-regenerated-for-production",
-                    "logoutURL": "http://localhost:3000/logout",
+                    "logoutURL": "http://localhost:9012/logout",
                     "enabledGrants": ["authorization_code","refresh_token"],
                     "debug": true,
                     "generateRefreshTokens": true
