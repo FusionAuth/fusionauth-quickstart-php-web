@@ -77,7 +77,7 @@
                     "authorizedRedirectURLs": ["http://localhost:9012/login.php"],
                     "authorizedOriginURLs": ["http://localhost:9012"],
                     "clientSecret": "super-secret-secret-that-should-be-regenerated-for-production",
-                    "logoutURL": "http://localhost:9012/logout",
+                    "logoutURL": "http://localhost:9012/logout.php",
                     "enabledGrants": ["authorization_code","refresh_token"],
                     "debug": true,
                     "generateRefreshTokens": true

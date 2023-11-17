@@ -1,7 +1,7 @@
 <?php
 verifySession();
 handleCSRFToken();
-$state = calculate();
+$state = calculateChange();
 
 function verifySession() {
     session_start();
@@ -20,12 +20,12 @@ function handleCSRFToken() {
     exit;
 }
 
-function calculate() {
+function calculateChange() {
   if ($_SERVER['REQUEST_METHOD'] !== 'POST')
     return [];
   $amount = $_POST["amount"];
   $state = [
-      'error' => false,
+      'iserror' => false,
       'hasChange' => true,
       'total' => '',
       'nickels' => '',
@@ -37,10 +37,9 @@ function calculate() {
   $state['nickels'] = number_format($nickels);
   $pennies = ($total - (0.05 * $nickels)) / 0.01;
   $state['pennies'] = ceil(floor($pennies * 100) / 100);
-  $state['error'] = !preg_match('/^(\d+(\.\d*)?|\.\d+)$/', $amount);
+  $state['iserror'] = !preg_match('/^(\d+(\.\d*)?|\.\d+)$/', $amount);
   return $state;
 }
-
 ?>
 
 <html>
@@ -73,6 +72,7 @@ function calculate() {
 
 <!-- GET REQUEST ------------------------------------------------>
 <?php if ($_SERVER['REQUEST_METHOD'] === 'GET'): ?>
+          <div class="change-message">Please enter a dollar amount:</div>
           <form method="post" action="change.php">
             <input type="hidden" name="csrftoken" value="<?= $_SESSION["csrftoken"] ?>" />
             <div class="h-row">
@@ -83,8 +83,8 @@ function calculate() {
           </form>
 <?php else: ?>
 <!-- POST REQUEST ----------------------------------------------->
-            <?php if ($state['error']): ?>
-            <div class="error-message"><?= $state['error'] ?></div>
+            <?php if ($state['iserror']): ?>
+            <div class="error-message">Please enter a dollar amount:</div>
             <?php else: ?>
             <div class="change-message">
               We can make change for <?= $state['total'] ?> with <?= $state['nickels'] ?> nickels and <?= $state['pennies'] ?> pennies!
