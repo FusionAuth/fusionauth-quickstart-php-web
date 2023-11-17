@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>FusionAuth OpenID and PKCE example</title>
@@ -8,7 +8,7 @@
   <div id="page-container">
     <div id="page-header">
       <div id="logo-header">
-        <img src="static/changebank.svg" />
+        <img src="static/changebank.svg"  alt="logo"/>
         <a class="button-lg" href="login.php">Login</a>
       </div>
 
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div style="flex: 0;">
-          <img src="static/money.jpg" style="max-width: 800px;"/>
+          <img src="static/money.jpg" style="max-width: 800px;" alt="coins"/>
         </div>
       </div>
     </div>
