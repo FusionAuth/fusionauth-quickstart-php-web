@@ -1,31 +1,38 @@
+<?php
+redirectIfNotLoggedIn();
+function redirectIfNotLoggedIn() {
+    session_start();
+    if (!isset($_SESSION['id'])) {
+        header('Location: login.php');
+        exit;
+    }
+}
+?>
+
 <html>
 <head>
   <meta charset="utf-8" />
   <title>FusionAuth OpenID and PKCE example</title>
-  <link rel="stylesheet" href="/static/css/changebank.css">
+  <link rel="stylesheet" href="static/changebank.css">
 </head>
 <body>
   <div id="page-container">
     <div id="page-header">
       <div id="logo-header">
-        <img src="https://fusionauth.io/assets/img/samplethemes/changebank/changebank.svg" />
+        <img src="static/changebank.svg" />
         <div class="h-row">
-          <p class="header-email">{{ email }}</p>
-          <form id="logoutForm" class="button-lg"  action="{% url 'oidc_logout' %}" method="post">
-            {% csrf_token %}
-            <a class="button-lg" href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>
-          </form>
+          <p class="header-email"><?= $_SESSION['email'] ?></p>
+          <a class="button-lg" href="logout.php" onclick="">Logout</a>
         </div>
       </div>
 
       <div id="menu-bar" class="menu-bar">
-        <a class="menu-link inactive" href="/app/change">Make Change</a>
-        <a class="menu-link" href="/app/account">Account</a>
+        <a class="menu-link inactive" href="change.php">Make Change</a>
+        <a class="menu-link" href="account.php">Account</a>
       </div>
     </div>
 
     <div style="flex: 1;">
-      <!-- Application page -->
       <div class="column-container">
         <div class="app-container">
           <h3>Your balance</h3>

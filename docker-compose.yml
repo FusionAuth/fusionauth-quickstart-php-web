@@ -5,8 +5,6 @@ networks:
     driver: bridge
   search_net:
     driver: bridge
-  # lara_net:
-  #   driver: bridge
 
 volumes:
   db_data:
@@ -87,7 +85,6 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-
 ## PHP ####################
   php:
     # image: php:8.2-apache
@@ -101,28 +98,6 @@ services:
       - ./your-application:/var/www/html
     extra_hosts:
       - "host.docker.internal:host-gateway"
-
-## LARAVEL ####################
-  # mariadb:
-  #   image: docker.io/bitnami/mariadb:11.0 # port 3306
-  #   container_name: lara_db
-  #   networks:
-  #     - lara_net
-  #   environment:
-  #     - ALLOW_EMPTY_PASSWORD=yes # recommended only for development.
-  #     - MARIADB_USER=bn_myapp
-  #     - MARIADB_DATABASE=bitnami_myapp
-  # lara_app:
-  #   image: docker.io/bitnami/laravel:10
-  #   container_name: lara_app
-  #   networks:
-  #     - lara_net
-  #   ports:
-  #     - 3000:8000
-  #   volumes:
-  #     - ./your-application:/app
-  #   depends_on:
-  #     - mariadb
-  #     - fusionauth
-  #   extra_hosts:
-  #     - "host.docker.internal:host-gateway"
+    depends_on:
+      - mariadb
+      - fusionauth
