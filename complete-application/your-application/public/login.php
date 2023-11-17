@@ -1,3 +1,5 @@
+//tag::1[]
+
 <?php
 
 hideErrorsInBrowser();
@@ -38,7 +40,9 @@ function startSafeSession() {
     session_set_cookie_params($cookieParams);
     session_start();
 }
+//end::1[]
 
+//tag::2[]
 function getFusionAuthProvider(): object {
     $fusionAuthClientId =     $_ENV['FUSIONAUTH_CLIENT_ID']     ?? getenv('FUSIONAUTH_CLIENT_ID');
     $fusionAuthClientSecret = $_ENV['FUSIONAUTH_CLIENT_SECRET'] ?? getenv('FUSIONAUTH_CLIENT_SECRET');
@@ -99,3 +103,4 @@ function handleFusionAuthCallback($provider) {
         exit('Failed to get user details from FusionAuth');
     }
 }
+//end::2[]
