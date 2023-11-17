@@ -9,3 +9,4 @@ function logOut() {
     header('Location: index.php');
     exit;
 }
+?>

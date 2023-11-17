@@ -42,7 +42,7 @@ function calculateChange(): array {
 }
 ?>
 
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>FusionAuth OpenID and PKCE example</title>
@@ -52,7 +52,7 @@ function calculateChange(): array {
   <div id="page-container">
     <div id="page-header">
       <div id="logo-header">
-        <img src="static/changebank.svg" />
+        <img src="static/changebank.svg"  alt="logo"/>
         <div class="h-row">
           <p class="header-email"><?= $_SESSION['email'] ?></p>
           <a class="button-lg" href="logout.php" onclick="">Logout</a>
