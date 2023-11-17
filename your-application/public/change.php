@@ -1,26 +1,68 @@
+<?php
+verifySession();
+handleCSRFToken();
+$state = calculate();
+
+function verifySession() {
+    session_start();
+    if (!isset($_SESSION['id'])) {
+        header('Location: login.php');
+        exit;
+    }
+}
+
+function handleCSRFToken() {
+  if ($_SERVER['REQUEST_METHOD'] === 'GET')
+    $_SESSION["csrftoken"] = bin2hex(random_bytes(32));
+  elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SESSION["csrftoken"] !== $_POST["csrftoken"])
+    exit;
+  elseif ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'GET')
+    exit;
+}
+
+function calculate() {
+  if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+    return [];
+  $amount = $_POST["amount"];
+  $state = [
+      'error' => false,
+      'hasChange' => true,
+      'total' => '',
+      'nickels' => '',
+      'pennies' => '',
+  ];
+  $total = floor(floatval($amount) * 100) / 100;
+  $state['total'] = is_nan($total) ? '' : number_format($total, 2);
+  $nickels = floor($total / 0.05);
+  $state['nickels'] = number_format($nickels);
+  $pennies = ($total - (0.05 * $nickels)) / 0.01;
+  $state['pennies'] = ceil(floor($pennies * 100) / 100);
+  $state['error'] = !preg_match('/^(\d+(\.\d*)?|\.\d+)$/', $amount);
+  return $state;
+}
+
+?>
+
 <html>
 <head>
   <meta charset="utf-8" />
   <title>FusionAuth OpenID and PKCE example</title>
-  <link rel="stylesheet" href="/static/css/changebank.css">
+  <link rel="stylesheet" href="static/changebank.css">
 </head>
 <body>
   <div id="page-container">
     <div id="page-header">
       <div id="logo-header">
-        <img src="https://fusionauth.io/assets/img/samplethemes/changebank/changebank.svg" />
+        <img src="static/changebank.svg" />
         <div class="h-row">
-          <p class="header-email">{{ email }}</p>
-          <form id="logoutForm" class="button-lg"  action="{% url 'oidc_logout' %}" method="post">
-            {% csrf_token %}
-            <a class="button-lg" href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>
-          </form>
+          <p class="header-email"><?= $_SESSION['email'] ?></p>
+          <a class="button-lg" href="logout.php" onclick="">Logout</a>
         </div>
       </div>
 
       <div id="menu-bar" class="menu-bar">
-        <a class="menu-link" href="{% url 'change' %}">Make Change</a>
-        <a class="menu-link inactive" href="{% url 'account' %}">Account</a>
+        <a class="menu-link" href="change.php">Make Change</a>
+        <a class="menu-link inactive" href="account.php">Account</a>
       </div>
     </div>
 
@@ -29,22 +71,36 @@
         <div class="app-container change-container">
           <h3>We Make Change</h3>
 
-          {% if change.error %}
-            <div class="error-message">{{ change.error }}</div>
-          {% else %}
-            <div class="change-message">
-              We can make change for ${{ change.total }} with {{ change.nickels }} nickels and {{ change.pennies }} pennies!
-            </div>
-          {% endif %}
-
-          <form method="post" action="{% url 'change' %}">
-            {% csrf_token %}
+<!-- GET REQUEST ------------------------------------------------>
+<?php if ($_SERVER['REQUEST_METHOD'] === 'GET'): ?>
+          <form method="post" action="change.php">
+            <input type="hidden" name="csrftoken" value="<?= $_SESSION["csrftoken"] ?>" />
             <div class="h-row">
               <div class="change-label">Amount in USD: $</div>
-              <input class="change-input" name="amount" value="0.00" />
+              <input class="change-input" name="amount" value="" />
               <input class="change-submit" type="submit" value="Make Change" />
             </div>
           </form>
+<?php else: ?>
+<!-- POST REQUEST ----------------------------------------------->
+            <?php if ($state['error']): ?>
+            <div class="error-message"><?= $state['error'] ?></div>
+            <?php else: ?>
+            <div class="change-message">
+              We can make change for <?= $state['total'] ?> with <?= $state['nickels'] ?> nickels and <?= $state['pennies'] ?> pennies!
+            </div>
+            <?php endif; ?>
+
+          <form method="post" action="change.php">
+            <input type="hidden" name="csrftoken" value="<?= $_SESSION["csrftoken"] ?>" />
+            <div class="h-row">
+              <div class="change-label">Amount in USD: $</div>
+              <input class="change-input" name="amount" value="<?= $_POST["amount"] ?>" />
+              <input class="change-submit" type="submit" value="Make Change" />
+            </div>
+          </form>
+<?php endif; ?>
+
         </div>
       </div>
     </div>

@@ -76,7 +76,6 @@ services:
     networks:
       - db_net
       - search_net
-      # - lara_net
     ports:
       - 9011:9011
     volumes:
@@ -87,7 +86,6 @@ services:
 
 ## PHP ####################
   php:
-    # image: php:8.2-apache
     build:
       context: .
       dockerfile: phpimage.Dockerfile

@@ -1,6 +1,7 @@
 <?php
-redirectIfNotLoggedIn();
-function redirectIfNotLoggedIn() {
+verifySession();
+
+function verifySession() {
     session_start();
     if (!isset($_SESSION['id'])) {
         header('Location: login.php');
