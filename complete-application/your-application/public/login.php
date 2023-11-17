@@ -99,4 +99,3 @@ function handleFusionAuthCallback($provider) {
         exit('Failed to get user details from FusionAuth');
     }
 }
-?>
