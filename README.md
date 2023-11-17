@@ -1,11 +1,11 @@
-# FusionAuth Laravel Quickstart
+# FusionAuth PHP Quickstart
 
 ## Documentation
 
-This repository is documented at https://fusionauth.io/docs/quickstarts/quickstart-php-laravel-web.
+This repository is documented at https://fusionauth.io/docs/quickstarts/quickstart-php-web.
 
 Further reading:
-- [Laravel Socialite concepts](https://laravel.com/docs/10.x/socialite)
+- [PHP OAuth provider](https://github.com/jerryhopper/oauth2-fusionauth)
 - [FusionAuth OAuth Docs](https://fusionauth.io/docs/v1/tech/oauth/endpoints)
 
 ## Prerequisites
@@ -14,14 +14,12 @@ Further reading:
 
 ## How To Run
 
-In a terminal run the following to start FusionAuth and Laravel.
+In a terminal run the following to start FusionAuth and PHP.
 
 ```shell
-git clone https://github.com/FusionAuth/fusionauth-quickstart-php-laravel-web.git
-cd fusionauth-quickstart-php-laravel-web/complete-application
-docker-compose up -d
-docker compose exec lara_app composer install
-docker compose exec lara_app php artisan migrate
+git clone https://github.com/FusionAuth/fusionauth-quickstart-php-web.git
+cd fusionauth-quickstart-php-web/complete-application
+docker-compose up
 ```
 
-Browse to the app at http://localhost:3000.
+Browse to the app at http://localhost:9012.

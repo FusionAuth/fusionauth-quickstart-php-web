@@ -43,9 +43,26 @@ cat /etc/apache2/apache2.conf
 ```
 
 
+RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/apache2.conf
+
+  php:
+    build:
+      context: .
+      dockerfile: phpimage.Dockerfile
+    container_name: phpbox
+    ports:
+      - 9012:80
+    volumes:
+      - ./your-application:/var/www/html
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - fusionauth
+
 https://github.com/jerryhopper/oauth2-fusionauth
-based on
-https://github.com/thephpleague/oauth2-client
+
+
 
 
 read more at https://oauth2-client.thephpleague.com/usage/
