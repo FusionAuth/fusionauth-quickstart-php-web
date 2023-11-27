@@ -14,7 +14,7 @@ function verifySession() {
 function handleCSRFToken() {
   if ($_SERVER['REQUEST_METHOD'] === 'GET')
     $_SESSION["csrftoken"] = bin2hex(random_bytes(32));
-  elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SESSION["csrftoken"] !== $_POST["csrftoken"])
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && !\hash_equals($_SESSION["csrftoken"], $_POST["csrftoken"]))
     exit;
   elseif ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'GET')
     exit;
@@ -95,7 +95,7 @@ function calculateChange(): array {
             <input type="hidden" name="csrftoken" value="<?= $_SESSION["csrftoken"] ?>" />
             <div class="h-row">
               <div class="change-label">Amount in USD: $</div>
-              <input class="change-input" name="amount" value="<?= $_POST["amount"] ?>" />
+              <input class="change-input" name="amount" value="<?= htmlspecialchars($_POST["amount"]) ?>" />
               <input class="change-submit" type="submit" value="Make Change" />
             </div>
           </form>

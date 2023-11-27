@@ -74,7 +74,7 @@ function redirectUserToFusionAuthIfNotLoggedIn($provider) {
 }
 
 function checkCSRFToken() {
-    if (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
+    if (empty($_GET['state']) || (!\hash_equals($_SESSION['oauth2state'], $_GET['state']))) {
         unset($_SESSION['oauth2state']);
         exit('Invalid CSRF state');
     }
