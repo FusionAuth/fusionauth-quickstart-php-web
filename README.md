@@ -16,7 +16,9 @@ The `complete-application` directory contains a fully working version of the app
 
 ## Prerequisites
 
-- Docker version 20 or later.
+- [PHP](https://www.php.net/downloads.php) 8+
+- [Composer](https://getcomposer.org/)
+- [Docker](https://www.docker.com) version 20 or later.
 
 ## Running FusionAuth
 
@@ -26,7 +28,8 @@ First clone the example repo and change into the project directory:
 
 ```shell
 git clone https://github.com/FusionAuth/fusionauth-quickstart-php-web.git
-cd fusionauth-quickstart-php-web
+cd fusionauth-quickstart-php-web/complete-application
+composer install
 ```
 
 Start the containers with docker compose.
@@ -49,7 +52,7 @@ You can log into the [FusionAuth admin UI](http://localhost:9011/admin) and look
 
 ## Running the Example Application
 
-To run the application, first go into the complete project directory
+If you followed the steps above the PHP application container will already be running and you can access it at http://localhost:9012 else go into the complete project directory
 
 ```shell
 cd complete-application
