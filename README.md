@@ -53,6 +53,7 @@ To run the application, first go into the complete project directory
 
 ```shell
 cd complete-application
+composer install
 ```
 
 Start up the application docker containers with the following
