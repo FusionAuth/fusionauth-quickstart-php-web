@@ -88,16 +88,3 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-## PHP ####################
-  php:
-    build:
-      context: .
-      dockerfile: phpimage.Dockerfile
-    ports:
-      - 9012:80
-    volumes:
-      - ./complete-application:/var/www/html
-    depends_on:
-      - fusionauth
-    networks:
-      - db_net

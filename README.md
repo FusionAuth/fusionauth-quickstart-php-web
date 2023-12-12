@@ -16,7 +16,7 @@ The `complete-application` directory contains a fully working version of the app
 
 ## Prerequisites
 
-- [PHP](https://www.php.net/downloads.php) 8+
+- [PHP](https://www.php.net/downloads.php) 8.1 +
 - [Composer](https://getcomposer.org/)
 - [Docker](https://www.docker.com) version 20 or later.
 
@@ -38,7 +38,7 @@ Start the containers with docker compose.
 docker compose up
 ```
 
-This will start a PHP container, PostgreSQL, Opensearch and the FusionAuth server.
+This will start a PostgreSQL, Opensearch and FusionAuth container.
 
 FusionAuth will initially be configured with these settings:
 
@@ -52,17 +52,17 @@ You can log into the [FusionAuth admin UI](http://localhost:9011/admin) and look
 
 ## Running the Example Application
 
-If you followed the steps above the PHP application container will already be running and you can access it at http://localhost:9012 else go into the complete project directory
+Change into the complete application directory and run the following commands.
 
 ```shell
 cd complete-application
 composer install
 ```
 
-Start up the application docker containers with the following
+Start up the application server with the following
 
 ```shell
-docker compose up
+php -S localhost:9012 -t public
 ```
 
 Browse to the app at http://localhost:9012 and login with `richard@example.com` and `password`.
