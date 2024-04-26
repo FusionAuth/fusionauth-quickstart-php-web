@@ -67,7 +67,10 @@ function redirectToAccountPageIfAlreadyLoggedIn() {
 function redirectUserToFusionAuthIfNotLoggedIn($provider) {
     if (isset($_GET['code']))
         return;
-    $authUrl = $provider->getAuthorizationUrl();
+    $options = [
+        'scope' => ['openid email profile']
+    ];
+    $authUrl = $provider->getAuthorizationUrl($options);
     $_SESSION['oauth2state'] = $provider->getState();
     header('Location: '.$authUrl);
     exit;
